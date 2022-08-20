@@ -17,6 +17,8 @@ create table raw.spies (
 );
 ```
 
+`dbt run-operation spy_db_init()`
+
 **Load 1**
 ```
 insert into raw.spies values('Alice', 5);

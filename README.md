@@ -6,38 +6,19 @@ Testing different dbt features. Using Postgres 12.8 on RDS.
 
 ### DDL, DML and dbt commands
 
-**DDL**
-```
-create schema raw;
+`dbt run-operation spy_db_init`
 
-create table raw.spies (
-    spy     	varchar(50),
-    skill   	integer,
-    updated_at  timestamp NOT NULL DEFAULT NOW()
-);
-```
+`dbt run-operation spy_load_one`
+`dbt snapshot` 
+`dbt run`
 
-**Load 1**
-```
-insert into raw.spies values('Alice', 5);
-insert into raw.spies values('Bob', 7);
-insert into raw.spies values('Cecil', 11);
-```
-`dbt snapshot && dbt run`
-
-**Load 2**
-```
-update raw.spies set skill=15 where spy='Bob';
-insert into raw.spies values('Dan', 8);
-insert into raw.spies values('Eve', 9);
-update raw.spies set skill=19 where spy='Eve';
-delete from raw.spies where spy='Alice'
-```
-`dbt snapshot && dbt run`
+`dbt run-operation spy_load_two`
+`dbt snapshot` 
+`dbt run`
 
 ### Result
 
-`select * from dbt_bkulcsar.spy_levels`
+`select * from dbt_bkulcsar.spy_levels order by spy`
 
 | spy   | skill | is_pro |
 |-------|-------|--------|
@@ -57,7 +38,7 @@ delete from raw.spies where spy='Alice'
 | Dan   | 8     | false  | 2022-08-20T08:27:55.577373 |
 | Eve   | 19    | true   | 2022-08-20T08:27:55.577373 |
 
-`select * from dbt_bkulcsar.spy_levels_incremental order by spy, updated_at`
+`select * from dbt_bkulcsar.spy_levels_snapshot order by spy, updated_at`
 
 | spy   | skill | updated_at | dbt_scd_id | dbt_updated_at | dbt_valid_from             | dbt_valid_to               | is_pro |
 |-------|-------|------------|------------|----------------|----------------------------|----------------------------|--------|

@@ -1,0 +1,1 @@
+select * from {{ ref('spy_levels') }} where skill <= 0

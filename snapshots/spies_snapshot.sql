@@ -1,4 +1,4 @@
-{% snapshot spy_levels_snap %}
+{% snapshot spies_snapshot %}
 
 {{
     config(

@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: raw
+    tables:
+      - name: spies
+
+models:
+  - name: spy_levels
+    config:
+      materialized: table
+  - name: spy_levels_incremental
+  - name: spy_levels_snapshot
+    config:
+      materialized: table

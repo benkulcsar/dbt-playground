@@ -16,7 +16,6 @@ create table raw.spies (
     updated_at  timestamp NOT NULL DEFAULT NOW()
 );
 ```
-`dbt snapshot && dbt run`
 
 **Load 1**
 ```
@@ -24,6 +23,7 @@ insert into raw.spies values('Alice', 5);
 insert into raw.spies values('Bob', 7);
 insert into raw.spies values('Cecil', 11);
 ```
+`dbt snapshot && dbt run`
 
 **Load 2**
 ```

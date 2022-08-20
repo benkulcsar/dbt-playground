@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: spy_levels
+    config:
+      materialized: table
+  - name: spy_levels_snap

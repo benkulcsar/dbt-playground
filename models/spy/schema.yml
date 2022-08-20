@@ -4,11 +4,20 @@ sources:
   - name: raw
     tables:
       - name: spies
+        columns:
+          - name: spy
+            tests:
+              - not_null
+              - unique
 
 models:
   - name: spy_levels
     config:
       materialized: table
+    columns:
+      - name: spy
+        tests:
+          - not_null_not_empty
   - name: spy_levels_incremental
   - name: spy_levels_snapshot
     config:
